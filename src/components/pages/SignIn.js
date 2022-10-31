@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { useAuth } from '../../store/authContex'
 import { Link, useNavigate } from 'react-router-dom'
-import styles from '../../css/SignIn.module.css'
+import styles from '../../css/PageWithForm.module.css'
 import {GoSignIn} from "react-icons/go"
 
 export default function SignIn() {
@@ -28,8 +28,8 @@ export default function SignIn() {
     setLoading(false)
   }
   return (
-    <div className={styles['signin-container']}>
-      <GoSignIn className={styles["signin-icon"]}/>
+    <div className={styles['page-container']}>
+      <GoSignIn className={styles["page-icon"]}/>
       {error && alert(error)}
       <form onSubmit={handleSubmit} className={styles['form-wrapper']}>
         <label>Email</label>
@@ -37,12 +37,12 @@ export default function SignIn() {
         <label>Password</label>
         <input type="password" ref={passwordRef}></input>
         <button disabled={loading}>Log In</button>
-        <div className={styles["signin-links"]}>
+        <div className={styles["page-links"]}>
           <div>
-            <Link to="/forgot-password" className={styles["signin-link"]}>Forgot your password?</Link>
+            <Link to="/forgot-password" className={styles["page-link"]}>Forgot your password?</Link>
           </div>
           <div>
-            Need an account? <Link to="/signup" className={styles["signin-link"]}>Sign Up</Link>
+            Need an account? <Link to="/signup" className={styles["page-link"]}>Sign Up</Link>
           </div>
         </div>
       </form>

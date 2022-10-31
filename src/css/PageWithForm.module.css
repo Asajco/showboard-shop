@@ -1,4 +1,4 @@
-.signin-container {
+.page-container {
   width: 100%;
   position: relative;
   display: flex;
@@ -45,25 +45,28 @@
   border: none;
   cursor: pointer;
 }
-.signin-icon{
+.page-icon{
     width: 50px;
     height: 50px;
     margin: 2rem 0 3rem 0;
 }
 
-.signin-links {
+.page-links {
   position: absolute;
-  bottom: 0;
+  bottom: 1%;
   margin-top: 5rem;
-  height: 5rem;
+  height: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
 }
-.signin-link {
+.page-link {
   text-decoration: none;
   color: black;
   transition: 0.3s;
 }
-.signin-link:hover {
+.page-link:hover {
   scale: 1.05;
   color: orange;
 }

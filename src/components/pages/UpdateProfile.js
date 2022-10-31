@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { useAuth } from '../../store/authContex'
 import { Link, useNavigate } from 'react-router-dom'
+import styles from '../../css/PageWithForm.module.css'
 
 export default function UpdateProfile() {
   const emailRef = useRef()
@@ -37,10 +38,10 @@ export default function UpdateProfile() {
       })
   }
   return (
-    <>
+    <div className={styles['page-container']}>
       <h2>Update Profile</h2>
       {error && alert(error)}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles['form-wrapper']}>
         <label>email</label>
         <input
           type="email"
@@ -60,10 +61,10 @@ export default function UpdateProfile() {
           placeholder="Leave blank to keep the same"
         ></input>
         <button disabled={loading}>Update</button>
+        <div className={styles["page-links"]}>
+          <Link to="/profile" className={styles["page-link"]}>Cancel</Link>
+        </div>
       </form>
-      <div>
-        <Link to="/profile">Cancel</Link>
-      </div>
-    </>
+    </div>
   )
 }

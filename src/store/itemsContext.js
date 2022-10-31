@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { db } from '../firebase'
 import { getDocs, collection } from 'firebase/firestore'
 
+
+
 const ItemsContext = React.createContext()
 
 export const ItemsContextProvider = (props) => {
   const [snowboards, setSnowboards] = useState(null)
   const [bindings, setBindings] = useState([])
   const [boots, setBoots] = useState([])
+  
 
   const getSnowboards = async () => {
     const querySnapshot = await getDocs(collection(db, 'snowboards'))
@@ -18,7 +21,7 @@ export const ItemsContextProvider = (props) => {
       }),
     )
   }
-
+ 
   const getBindings = async () => {
     const querySnapshot = await getDocs(collection(db, 'bindings'))
 
@@ -37,7 +40,14 @@ export const ItemsContextProvider = (props) => {
   }, [])
 
   return (
-    <ItemsContext.Provider value={{ snowboards: snowboards }}>
+    <ItemsContext.Provider
+      value={{
+        snowboards: snowboards,
+        bindings: bindings,
+        boots: boots,
+        
+      }}
+    >
       {props.children}
     </ItemsContext.Provider>
   )

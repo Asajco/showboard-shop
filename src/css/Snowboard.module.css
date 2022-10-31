@@ -1,0 +1,18 @@
+h1 {
+  margin-top: 2rem;
+  font-size: 1.9rem;
+}
+.card-container {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    gap: 2rem;
+    padding: 0rem 5rem 0rem 5rem;
+}
+
+.size {
+  transition: 0.3s;
+}
+.size:hover {
+  color: orange;
+}

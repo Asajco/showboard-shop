@@ -1,0 +1,40 @@
+.item-page-wrapper{
+    display: flex;
+    flex-direction: row;
+    margin: 3rem;
+    
+    justify-content: space-between;
+}
+.item-page-wrapper img{
+    width: 50%;
+    height: 80%;
+    margin-right: 2rem;
+}   
+.item-page-about-item-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-left: 2rem;
+    line-height: 2rem;
+    text-align: justify;
+    background-color: whitesmoke;
+    padding: 2rem 3rem;
+    border-radius: 0.5rem;
+}
+.item-page-about-item-wrapper h2{
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+.item-page-about-item-wrapper label{
+    font-size: 1.3rem;
+    color: gray;
+    margin-bottom: 1rem;
+}
+.item-page-sizes{
+    display: flex;
+    flex-direction: row;
+}
+.item-page-price{
+    font-size: 1.3rem;
+    font-weight: bold;
+}
