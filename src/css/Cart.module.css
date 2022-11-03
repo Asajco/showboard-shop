@@ -1,0 +1,37 @@
+.cart-item {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cart-is-empty {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+}
+.cart-is-empty img {
+  margin-top: 3rem;
+  max-width: 300px;
+}
+.item-container {
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+}
+.item-container h2{
+    margin: 1rem;
+}
+.total-price {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: black;
+  color: white;
+  font: 500 1.3rem 'Roboto', sans-serif;
+}

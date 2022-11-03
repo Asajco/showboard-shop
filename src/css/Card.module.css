@@ -21,25 +21,28 @@
   height: 200px;
 }
 
-.card-size {
-  margin-top: 0.5rem;
-  transition: 0.3s;
-}
-.sizes-wrapper{
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-}
-
 .card-lower-part {
-position: absolute;
-bottom: 0;
+  position: absolute;
+  bottom: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 1.5rem;
 }
+
 .card-lower-part p {
   margin: 0.25rem 0rem 0.25rem 0rem;
+  font: bold 1rem 'Roboto', sans-serif;
+}
+
+.card-link {
+  margin-top: 0.8rem;
+  text-decoration: none;
+  color: black;
+  font: 500 1.2rem 'Roboto', sans-serif;
+  transition: 0.25s;
+}
+.card-link:hover {
+  color: orange;
 }

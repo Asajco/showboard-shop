@@ -1,15 +1,18 @@
 .navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: relative;
   width: 100%;
-  height: 3rem;
+  height: 4rem;
   background-color: black;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Roboto';
 }
 .navbar-wrapper {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  flex-wrap: wrap;
   height: 100%;
   width: -50%;
   font-size: 1.2rem;

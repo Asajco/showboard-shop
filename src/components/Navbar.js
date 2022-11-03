@@ -4,12 +4,14 @@ import styles from '../css/Navbar.module.css'
 import { useAuth } from '../store/authContex'
 import { BsFillCartFill } from 'react-icons/bs'
 import CartContext from '../store/buyContext'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 function Navbar() {
   const { currentUser, logout } = useAuth()
   const { count } = useContext(CartContext)
   return (
     <div className={styles['navbar-container']}>
+      <LazyLoadImage src={require("../assets/logo.png")} width={110} height={80}/>
       <nav className={styles['navbar-wrapper']}>
         <Link to="/" className={styles['navbar-link']}>
           Home

@@ -7,10 +7,12 @@ import CartContext from '../store/buyContext'
 function BindingsItemPage() {
   const { itemId } = useParams()
   const { bindings } = useContext(ItemsContext)
-  const {cart, setCart} = useContext(CartContext)
+  const {cart, setCart, count, setCount} = useContext(CartContext)
   
   const addToCart = (item) =>{
     setCart([...cart, item])
+    setCount(count + 1)
+    window.scrollTo(0, 0);
   }
   return (
     <div>

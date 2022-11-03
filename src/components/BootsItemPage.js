@@ -3,14 +3,17 @@ import { useParams } from 'react-router-dom'
 import ItemsContext from '../store/itemsContext'
 import ItemPage from './ItemPage'
 import CartContext from '../store/buyContext'
+import Spinner from './Spinner'
 
 function BootsItemPage() {
   const { itemId } = useParams()
   const { boots } = useContext(ItemsContext)
-  const {cart, setCart} = useContext(CartContext)
-  
-  const addToCart = (item) =>{
+  const { cart, setCart, count, setCount } = useContext(CartContext)
+
+  const addToCart = (item) => {
     setCart([...cart, item])
+    setCount(count + 1)
+    window.scrollTo(0, 0)
   }
   return (
     <div>
@@ -33,14 +36,14 @@ function BootsItemPage() {
                       return <p key={index}>{size}</p>
                     })}
                   />
-                  <button onClick={()=>addToCart(item)}>Add to cart</button>
+                  <button onClick={() => addToCart(item)}>Add to cart</button>
                 </div>
               ) : null}
             </div>
           )
         })
       ) : (
-        <div>Something went wrong ...</div>
+        <Spinner />
       )}
     </div>
   )

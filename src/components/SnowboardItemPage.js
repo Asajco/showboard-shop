@@ -22,7 +22,7 @@ function SnowboardItemPage() {
           return (
             <div>
               {item.title === itemId ? (
-                <div>
+                <div key={item.title}>
                   <ItemPage
                     key={index}
                     image={item.image}

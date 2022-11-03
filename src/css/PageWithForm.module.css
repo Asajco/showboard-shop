@@ -5,9 +5,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
+  font-family: "Roboto", sans-serif;
+  }
 
 .form-wrapper {
   position: relative;
@@ -21,13 +20,19 @@
   padding: 2rem;
   border: 2px solid black;
   border-radius: 0.5rem;
+  
 }
 .form-wrapper input {
   width: 60%;
   height: 1.5rem;
   border: 2px solid black;
   transition: 0.5s;
-  background-color: transparent;
+  background-color: white;
+}
+.form-wrapper input:focus{
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  outline: none;
 }
 .form-wrapper label {
   margin: 1rem 0 0.5rem 0;

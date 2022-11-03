@@ -7,13 +7,9 @@ function Card(props) {
     <div className={styles['card-container']}>
       <h1>{props.title}</h1>
       <img src={props.image} alt="" />
-      <div className={styles['sizes-wrapper']}>
-        <p className={styles['card-size']}>{props.size} </p>
-      </div>
       <div className={styles['card-lower-part']}>
-        <p>{props.brand}</p>
         <p>{props.price} €</p>
-        <Link to={props.link}>View more</Link>
+        <Link to={props.link} className={styles["card-link"]}>View more</Link>
       </div>
     </div>
   )

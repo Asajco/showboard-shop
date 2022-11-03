@@ -48,13 +48,13 @@ export default function UpdateProfile() {
           ref={emailRef}
           defaultValue={currentUser.email}
         ></input>
-        <label>email</label>
+        <label>password</label>
         <input
           type="password"
           ref={passwordRef}
           placeholder="Leave blank to keep the same"
         ></input>
-        <label>email</label>
+        <label>password again</label>
         <input
           type="password"
           ref={passwordConfirmRef}

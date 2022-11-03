@@ -17,6 +17,8 @@ import SnowboardItemPage from './components/SnowboardItemPage'
 import BindingsItemPage from './components/BindingsItemPage'
 import BootsItemPage from './components/BootsItemPage'
 import Cart from './components/Cart'
+import Payment from './components/pages/Payment'
+
 function App() {
   return (
     <div className="App">
@@ -32,9 +34,11 @@ function App() {
           <Route path="snowboards/:itemId" element={<SnowboardItemPage />} />
           <Route path="bindings/:itemId" element={<BindingsItemPage />} />
           <Route path="boots/:itemId" element={<BootsItemPage />} />
+          
         </Route>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/cart" element={<Cart/>}/>
+          <Route path="cart/payment" element={<Payment/>}/>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/update-profile" element={<UpdateProfile />} />
