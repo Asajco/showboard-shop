@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: center;
   font-family: "Roboto", sans-serif;
+  
 }
 .profile-wrapper{
   width: 100%;
@@ -50,4 +51,15 @@
 .profile-notloged {
   margin-top: 5rem;
 }
-
+.profile-order-container{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+  
+}
+.profile-order-container h2{
+  border-bottom: 2px solid black;
+  padding: 0.2rem;
+  width: 15%;
+}

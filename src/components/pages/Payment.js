@@ -2,13 +2,12 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { useForm } from 'react-hook-form'
 import { db } from '../../firebase'
-import { setDoc, doc } from 'firebase/firestore'
+import { addDoc, collection } from 'firebase/firestore'
 
 import CartContext from '../../store/buyContext'
 import { useAuth } from '../../store/authContex'
 
 function Payment() {
-  const [order, setOrder] = useState({})
   const { cart, totalPriceOfCart } = useContext(CartContext)
   const navigate = useNavigate()
   const {
@@ -19,9 +18,11 @@ function Payment() {
 
   const { currentUser } = useAuth()
 
+  
   const onSubmit = async (data) => {
     console.log(totalPriceOfCart)
-    await setDoc(doc(db, 'users', currentUser.email), {
+    await addDoc(collection(db, 'users'), {
+      user: currentUser.email,
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
@@ -31,15 +32,14 @@ function Payment() {
       delivery: data.delivery,
       order: cart,
       totalPrice: totalPriceOfCart,
-    })
-    
+  })
   }
 
-  //   useEffect(() => {
-  //     if (cart.length === 0) {
-  //       navigate('/')
-  //     }
-  //   }, [])
+    useEffect(() => {
+      if (cart.length === 0) {
+        navigate('/')
+      }
+    }, [])
 
   return (
     <>
@@ -74,7 +74,7 @@ function Payment() {
         {errors.street?.type === 'required' && (
           <p role="alert">Street name is required</p>
         )}
-        <select {...register('delivery', {required: true})}>
+        <select {...register('delivery', { required: true })}>
           <option value="gls">GLS</option>
           <option value="upc">UPC</option>
           <option value="personalTake">Take it in person</option>

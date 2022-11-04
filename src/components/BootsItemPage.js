@@ -32,11 +32,12 @@ function BootsItemPage() {
                     title={item.title}
                     price={item.price}
                     description={item.description}
+                    onClick={()=>addToCart(item)}
                     size={item.size.map((size, index) => {
                       return <p key={index}>{size}</p>
                     })}
                   />
-                  <button onClick={() => addToCart(item)}>Add to cart</button>
+                 
                 </div>
               ) : null}
             </div>

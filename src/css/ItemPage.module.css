@@ -5,7 +5,7 @@
     
     justify-content: space-between;
 }
-.item-page-wrapper img{
+.item-page-wrapper-image{
     width: 50%;
     height: 80%;
     margin-right: 2rem;
@@ -30,6 +30,17 @@
     color: gray;
     margin-bottom: 1rem;
 }
+.item-page-about-item-wrapper button{
+    width: 70%;
+    height: 2rem;
+    margin-top: 3rem;
+    align-self: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
 .item-page-sizes{
     display: flex;
     flex-direction: row;
@@ -37,4 +48,5 @@
 .item-page-price{
     font-size: 1.3rem;
     font-weight: bold;
+    margin-top: 1rem;
 }

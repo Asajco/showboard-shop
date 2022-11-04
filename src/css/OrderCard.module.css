@@ -1,0 +1,11 @@
+.order-card-wrapper{  
+    width: 100%;
+    border-bottom: 2px solid black;
+    margin-top: 2rem;
+    padding-bottom: 0.5rem;
+}
+.order-card-wrapper h4{
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}

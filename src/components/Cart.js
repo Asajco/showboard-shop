@@ -4,6 +4,7 @@ import styles from '../css/Cart.module.css'
 import ItemInCart from './ItemInCart'
 import {LazyLoadImage} from 'react-lazy-load-image-component'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../store/authContex'
 
 function Cart() {
   const {
@@ -13,7 +14,7 @@ function Cart() {
     totalPriceOfCart,
     setTotalPriceOfCart,
   } = useContext(CartContext)
-
+  const {currentUser} = useAuth()
   const emptyCart = require('../assets/empty-cart.png')
   const clearCart = () => {
     setCart([])
@@ -51,7 +52,7 @@ function Cart() {
           <div className={styles['total-price']}>
             <button onClick={clearCart}>clear cart</button>
             <p>Total price: {Math.round(totalPriceOfCart * 100) / 100} € </p>
-            <Link to="payment">Proceed to payment</Link>
+            <Link to={currentUser ? 'payment' : '/signin'}>Procced to payment</Link>
           </div>
         </div>
       ) : (

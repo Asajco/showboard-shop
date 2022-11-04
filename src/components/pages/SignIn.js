@@ -21,7 +21,7 @@ export default function SignIn() {
       setError('')
       setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
-      navigate("/")
+      navigate(-1)
     } catch {
       setError('Failed to sign in')
     }
