@@ -1,3 +1,5 @@
+
+
 .item-page-wrapper{
     display: flex;
     flex-direction: row;
@@ -42,6 +44,7 @@
     cursor: pointer;
 }
 .item-page-sizes{
+    margin-top: 2.4rem;
     display: flex;
     flex-direction: row;
 }
@@ -49,4 +52,13 @@
     font-size: 1.3rem;
     font-weight: bold;
     margin-top: 1rem;
+}
+.item-page-btn{
+    height: 1.5rem;
+    background-color: black;
+    color: white;
+    transition: 0.2s;
+}
+.item-page-btn:hover{
+    background-color: orange;
 }

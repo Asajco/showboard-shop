@@ -1,16 +1,21 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import ItemsContext from '../store/itemsContext'
 import { useParams } from 'react-router-dom'
 import ItemPage from './ItemPage'
 import CartContext from '../store/buyContext'
 
 function BindingsItemPage() {
+  const [size, setSize] = useState(null)
   const { itemId } = useParams()
   const { bindings } = useContext(ItemsContext)
   const {cart, setCart, count, setCount} = useContext(CartContext)
   
+  const setSizeOfItem = (size) => {
+    setSize(size)
+  }
+  
   const addToCart = (item) =>{
-    setCart([...cart, item])
+    setCart([...cart, { ...item, size: size }])
     setCount(count + 1)
     window.scrollTo(0, 0);
   }
@@ -33,7 +38,14 @@ function BindingsItemPage() {
                     onClick={()=>addToCart(item)}
                     description={item.description}
                     size={item.size.map((size, index) => {
-                      return <p key={index}>{size}</p>
+                      return (
+                        <div>
+                          <button key={index} onClick={() => setSizeOfItem(size)}>
+                            {size}
+                          </button>
+                        
+                        </div>
+                      )
                     })}
                   />
                   

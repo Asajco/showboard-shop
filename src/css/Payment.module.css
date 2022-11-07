@@ -1,0 +1,69 @@
+.payment-container {
+  width: 100%;
+  width: 100%;
+  display: flex;
+}
+.payment-image {
+  width: 50%;
+}
+.payment-form-container {
+  position: relative;
+  width: 100%;
+  align-items: flex-end;
+  padding: 1.5rem;
+}
+.payment-form-wrapper {
+ 
+  right: 0;
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-evenly;
+}
+.payment-form-wrapper:last-child {
+  margin-left: 3rem;
+}
+.payment-form-wrapper input {
+  width: 70%;
+  height: 1.5rem;
+  font-size: 1rem;
+  transition: 0.5s;
+  border-radius: 0.5rem;
+}
+.payment-form-wrapper label {
+  margin: 1rem 0rem 0.5rem 1rem;
+}
+.payment-form-wrapper input:focus {
+  outline: none;
+  width: 75%;
+  font-size: 1.2rem;
+}
+.payment-form-wrapper select {
+  width: 70%;
+  height: 1.5rem;
+  appearance: none;
+  background-color: transparent;
+  border-bottom: 2px solid black;
+  border-radius: 0.5rem;
+  padding: 0.7rem;
+  margin: 0;
+  font-size: 1rem;
+  outline: none;
+}
+.payment-form-btn {
+  width: 70%;
+  margin-top: 2rem;
+  height: 3em;
+  background-color: darkgray;
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  transition: 0.3s;
+}
+.payment-form-btn:hover {
+  background-color: orange;
+}

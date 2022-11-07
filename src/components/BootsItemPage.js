@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ItemsContext from '../store/itemsContext'
 import ItemPage from './ItemPage'
@@ -6,12 +6,17 @@ import CartContext from '../store/buyContext'
 import Spinner from './Spinner'
 
 function BootsItemPage() {
+  const [size, setSize] = useState(null)
   const { itemId } = useParams()
   const { boots } = useContext(ItemsContext)
   const { cart, setCart, count, setCount } = useContext(CartContext)
 
+  const setSizeOfItem = (size) => {
+    setSize(size)
+  }
+
   const addToCart = (item) => {
-    setCart([...cart, item])
+    setCart([...cart, { ...item, size: size }])
     setCount(count + 1)
     window.scrollTo(0, 0)
   }
@@ -32,12 +37,15 @@ function BootsItemPage() {
                     title={item.title}
                     price={item.price}
                     description={item.description}
-                    onClick={()=>addToCart(item)}
+                    onClick={() => addToCart(item)}
                     size={item.size.map((size, index) => {
-                      return <p key={index}>{size}</p>
+                      return (
+                        <button key={index} onClick={() => setSizeOfItem(size)}>
+                          {size}
+                        </button>
+                      )
                     })}
                   />
-                 
                 </div>
               ) : null}
             </div>

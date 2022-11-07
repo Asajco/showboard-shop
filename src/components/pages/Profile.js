@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../../store/authContex'
 import styles from '../../css/Profile.module.css'
 import { GrUser } from 'react-icons/gr'
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, getDocs, where } from 'firebase/firestore'
 import { db } from '../../firebase'
 import OrderCard from '../OrderCard'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
@@ -20,9 +20,14 @@ function Profile() {
   const destinationURL = location.state?.returnURL || '/'
   const noOrderImage = require('../../assets/noOrder.png')
 
+  useEffect(() => {
+    setLoading(true)
+    getOrders()
+    console.log(order)
+  }, [])
+
   async function handleLogout() {
     setError('')
-
     try {
       await logout()
       navigate(destinationURL)
@@ -33,20 +38,14 @@ function Profile() {
   //fetch order from firebase by user email
 
   const getOrders = async () => {
-    setLoading(true)
     const querySnapshot = await getDocs(collection(db, 'users'))
+    setLoading(false)
     setOrder(
       querySnapshot.docs.map((doc) => {
-        setLoading(false)
         return doc.data()
       }),
     )
   }
-
-  useEffect(() => {
-    getOrders()
-    console.log(order)
-  }, [])
 
   return (
     <div className={styles['profile-container']}>
@@ -63,22 +62,26 @@ function Profile() {
           </div>
           {order ? (
             <div className={styles['profile-order-container']}>
-              <h2>Order history</h2>
+              {console.log(order)}
+              <h2>Orders: </h2>
               {order.map((item, index) => {
                 return (
                   <>
                     <div key={index}>
                       {item.user === currentUser.email && (
-                        <OrderCard
-                          price={item.totalPrice}
-                          title={item.order.map((item, index) => {
-                            return (
-                              <div key={index}>
-                                <p>{item.title}</p>
-                              </div>
-                            )
-                          })}
-                        />
+                        <>
+                          {/* <h2>Order: </h2> */}
+                          <OrderCard
+                            price={item.totalPrice}
+                            title={item.order.map((item, index) => {
+                              return (
+                                <div key={index}>
+                                  <p>{item.title}</p>
+                                </div>
+                              )
+                            })}
+                          />
+                        </>
                       )}
                     </div>
                   </>

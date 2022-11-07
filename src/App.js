@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import Home from './components/pages/Home'
@@ -18,6 +18,7 @@ import BindingsItemPage from './components/BindingsItemPage'
 import BootsItemPage from './components/BootsItemPage'
 import Cart from './components/Cart'
 import Payment from './components/pages/Payment'
+import Confirmation from './components/Confirmation'
 
 function App() {
   return (
@@ -34,11 +35,11 @@ function App() {
           <Route path="snowboards/:itemId" element={<SnowboardItemPage />} />
           <Route path="bindings/:itemId" element={<BindingsItemPage />} />
           <Route path="boots/:itemId" element={<BootsItemPage />} />
-          
         </Route>
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/cart" element={<Cart/>}/>
-          <Route path="cart/payment" element={<Payment/>}/>
+        <Route path="/cart" element={<Cart />} />
+        <Route path="cart/payment" element={<Payment />} />
+        <Route path="accepted" element={<Confirmation />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/update-profile" element={<UpdateProfile />} />

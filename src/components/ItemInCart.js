@@ -6,9 +6,10 @@ function ItemInCart(props) {
   const {
     setTotalPriceOfCart,
     totalPriceOfCart,
+    cart,
     setCart,
     setCount,
-    count
+    count,
   } = useContext(CartContext)
   const [quantity, setQuantity] = useState(1)
 
@@ -24,32 +25,36 @@ function ItemInCart(props) {
     setCart((prev) => prev.filter((item) => item.title !== props.title))
     setCount(count - 1)
   }
+ 
 
   return (
-    (
-      <div className={styles['item-wrapper']}>
-        <img src={props.image} alt="" />
-        <div className={styles['item-info-wrapper']}>
-          <h4>{props.title}</h4>
-          <div className={styles['item-info']}>
-            <p>{props.size}</p>
-            <div className={styles['item-quantity']}>
-              {quantity > 1 ? (
-                <button onClick={decreaseQuantity}>-</button>
-              ) : (
-                <button disabled>-</button>
-              )}
+    <div className={styles['item-wrapper']}>
+      <img src={props.image} alt="" />
+      <div className={styles['item-info-wrapper']}>
+        <h4>{props.title}</h4>
+        <div className={styles['item-info']}>
+          <p>{props.size}</p>
+          <div className={styles['item-quantity']}>
+            {quantity > 1 ? (
+              <button onClick={decreaseQuantity}>-</button>
+            ) : (
+              <button disabled>-</button>
+            )}
 
-              <p>{quantity}</p>
-              <button onClick={increaseQuantity}>+</button>
-            </div>
-            <p>{props.price}</p>
-            <p>{props.totalPriceOfProduct * quantity}</p>
-            <button onClick={removeItem} className={styles["item-info-remove-btn"]}>X</button>
+            <p>{quantity}</p>
+            <button onClick={increaseQuantity}>+</button>
           </div>
+          <p>{props.price}</p>
+          <p>{props.totalPriceOfProduct * quantity}</p>
+          <button
+            onClick={removeItem}
+            className={styles['item-info-remove-btn']}
+          >
+            X
+          </button>
         </div>
       </div>
-    )
+    </div>
   )
 }
 

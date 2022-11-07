@@ -7,7 +7,7 @@ function OrderCard(props) {
         <h4>Items:</h4>
         <p>{props.title}</p>
         <h4>Total Price: </h4>
-        <p >{props.price}</p>
+        <p >{props.price} €</p>
     </div>
   )
 }
