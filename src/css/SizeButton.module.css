@@ -2,3 +2,6 @@
     background-color: white;
     margin: 0.5rem;
 }
+.size-btn-active{
+    background-color: red;
+}

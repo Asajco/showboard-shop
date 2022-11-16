@@ -14,6 +14,7 @@ function SnowboardItemPage() {
 
   const setSizeOfItem = (size) => {
     setSize(size)
+    
   }
   console.log(size)
   const addToCart = (item) => {
@@ -22,10 +23,7 @@ function SnowboardItemPage() {
     setCount(count + 1)
     window.scrollTo(0, 0)
   }
-  const btn = {
-    width: "3rem",
-    
-  }
+  
   return (
     <div>
       {snowboards ? (
@@ -48,7 +46,7 @@ function SnowboardItemPage() {
                         <button
                           key={index}
                           onClick={() => setSizeOfItem(size)}
-                          className={styles['size-btn']}
+                          className={styles["size-btn"]}
                           
                         >
                           {size}

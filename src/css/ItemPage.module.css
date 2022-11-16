@@ -62,3 +62,9 @@
 .item-page-btn:hover{
     background-color: orange;
 }
+.btn-active{
+    background-color: red;
+}
+.btn-basic{
+    background-color: aqua;
+}

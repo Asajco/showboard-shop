@@ -53,7 +53,7 @@ function Cart() {
           <div className={styles['total-price']}>
             <button onClick={clearCart}>clear cart</button>
             <p>Total price: {Math.round(totalPriceOfCart * 100) / 100} € </p>
-            <Link to={currentUser ? 'payment' : '/signin'}>
+            <Link to={currentUser ? 'payment' : '/signin'} className={"cart-link"}>
               Procced to payment
             </Link>
           </div>

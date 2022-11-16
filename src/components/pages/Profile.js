@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../../store/authContex'
 import styles from '../../css/Profile.module.css'
@@ -8,12 +8,14 @@ import { db } from '../../firebase'
 import OrderCard from '../OrderCard'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Spinner from '../Spinner'
+import CartContext from '../../store/buyContext'
 
 function Profile() {
   const [error, setError] = useState('')
   const [order, setOrder] = useState(null)
   const [loading, setLoading] = useState(false)
   const { currentUser, logout } = useAuth()
+  const {setCount} = useContext(CartContext)
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -30,6 +32,7 @@ function Profile() {
     setError('')
     try {
       await logout()
+      setCount(0)
       navigate(destinationURL)
     } catch {
       setError('Failed to log out')
