@@ -3,7 +3,7 @@ import ItemsContext from '../store/itemsContext'
 import { useParams } from 'react-router-dom'
 import ItemPage from './ItemPage'
 import CartContext from '../store/buyContext'
-
+import styles from '../css/SizeButton.module.css'
 function BindingsItemPage() {
   const [size, setSize] = useState(null)
   const { itemId } = useParams()
@@ -40,9 +40,13 @@ function BindingsItemPage() {
                     size={item.size.map((size, index) => {
                       return (
                         <div>
-                          <button key={index} onClick={() => setSizeOfItem(size)}>
-                            {size}
-                          </button>
+                          <button
+                          key={index}
+                          onClick={() => setSizeOfItem(size)}
+                          className={styles['size-btn']}
+                        >
+                          {size}
+                        </button>
                         
                         </div>
                       )

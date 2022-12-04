@@ -4,6 +4,7 @@ import ItemsContext from '../store/itemsContext'
 import ItemPage from './ItemPage'
 import CartContext from '../store/buyContext'
 import Spinner from './Spinner'
+import styles from '../css/SizeButton.module.css'
 
 function BootsItemPage() {
   const [size, setSize] = useState(null)
@@ -40,7 +41,11 @@ function BootsItemPage() {
                     onClick={() => addToCart(item)}
                     size={item.size.map((size, index) => {
                       return (
-                        <button key={index} onClick={() => setSizeOfItem(size)}>
+                        <button
+                          key={index}
+                          onClick={() => setSizeOfItem(size)}
+                          className={styles['size-btn']}
+                        >
                           {size}
                         </button>
                       )

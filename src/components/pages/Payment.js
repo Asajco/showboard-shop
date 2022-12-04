@@ -6,7 +6,7 @@ import { addDoc, collection } from 'firebase/firestore'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import CartContext from '../../store/buyContext'
 import { useAuth } from '../../store/authContex'
-import Image from '../../assets/empty-cart.png'
+import Image from '../../assets/payment-image.jpeg'
 import styles from '../../css/Payment.module.css'
 import Spinner from '../Spinner'
 function Payment() {
@@ -96,7 +96,7 @@ function Payment() {
           </select>
           <div className={styles['payment-terms']}>
             <input type="checkbox" {...register('terms', { required: true })}/>
-            <label>I accept terms of contitions</label>
+            <label>I accept <i>terms of contitions</i></label>
           </div>
           {errors.delivery?.type === 'required' && (
             <p role="alert">Delivery type is required</p>

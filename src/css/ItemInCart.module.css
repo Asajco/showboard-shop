@@ -9,8 +9,8 @@
 }
 
 .item-wrapper img {
-  max-width: 150px;
-  max-height: 150px;
+  width: 150px;
+  height: 150px;
   margin: 1rem;
 }
 .item-info-wrapper {
@@ -25,7 +25,7 @@
   align-items: center;
   margin-left: 3rem;
 }
-.item-quantity button{
+.item-quantity button {
   background-color: rgb(241, 240, 240);
   border: none;
   box-sizing: border-box;

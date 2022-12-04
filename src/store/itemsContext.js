@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { db } from '../firebase'
-import { getDocs, collection } from 'firebase/firestore'
-
-
+import { getDocs, collection, query } from 'firebase/firestore'
+import { useAuth } from './authContex'
 
 const ItemsContext = React.createContext()
 
@@ -10,7 +9,8 @@ export const ItemsContextProvider = (props) => {
   const [snowboards, setSnowboards] = useState(null)
   const [bindings, setBindings] = useState([])
   const [boots, setBoots] = useState([])
-  
+  const [order, setOrder] = useState([])
+  // const { currentUser } = useAuth()
 
   const getSnowboards = async () => {
     const querySnapshot = await getDocs(collection(db, 'snowboards'))
@@ -21,7 +21,7 @@ export const ItemsContextProvider = (props) => {
       }),
     )
   }
- 
+
   const getBindings = async () => {
     const querySnapshot = await getDocs(collection(db, 'bindings'))
 
@@ -32,11 +32,25 @@ export const ItemsContextProvider = (props) => {
 
     setBoots(querySnapshot.docs.map((doc) => doc.data()))
   }
+  const getOrders = async () => {
+    const q = query(
+      collection(db, 'users'),
+    
+    )
+    const querySnapshot = await getDocs(q)
+    setOrder(
+      querySnapshot.docs.map((doc) => {
+        return doc.data()
+      }),
+    )
+  }
 
   useEffect(() => {
     getSnowboards()
     getBindings()
     getBoots()
+    getOrders()
+    console.log(order)
   }, [])
 
   return (
@@ -45,7 +59,7 @@ export const ItemsContextProvider = (props) => {
         snowboards: snowboards,
         bindings: bindings,
         boots: boots,
-        
+        order: order,
       }}
     >
       {props.children}

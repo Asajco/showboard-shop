@@ -33,12 +33,12 @@ function Cart() {
       {console.log(cart)}
       {cart.length > 0 ? (
         <div className={styles['item-container']}>
+          <h2>Items in your cart</h2>
           {cart.map((item, index) => {
             console.log(item.price)
 
             return (
               <>
-                <h2>Items in your cart</h2>
                 <ItemInCart
                   key={index}
                   title={item.title}
@@ -53,7 +53,10 @@ function Cart() {
           <div className={styles['total-price']}>
             <button onClick={clearCart}>clear cart</button>
             <p>Total price: {Math.round(totalPriceOfCart * 100) / 100} € </p>
-            <Link to={currentUser ? 'payment' : '/signin'} className={"cart-link"}>
+            <Link
+              to={currentUser ? 'payment' : '/signin'}
+              className={'cart-link'}
+            >
               Procced to payment
             </Link>
           </div>

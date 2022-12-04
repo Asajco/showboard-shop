@@ -1,8 +1,11 @@
 import React from 'react'
-
+import styles from "../css/Footer.module.css"
+import { Link } from "react-router-dom"
 function Footer() {
   return (
-    <div>Footer</div>
+    <div className={styles["footer-container"]}>
+      <Link to="/contact">Contact us</Link>
+    </div>
   )
 }
 

@@ -3,24 +3,25 @@ import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../../store/authContex'
 import styles from '../../css/Profile.module.css'
 import { GrUser } from 'react-icons/gr'
-import { collection, getDocs, where } from 'firebase/firestore'
+import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '../../firebase'
 import OrderCard from '../OrderCard'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Spinner from '../Spinner'
 import CartContext from '../../store/buyContext'
 
+
 function Profile() {
   const [error, setError] = useState('')
   const [order, setOrder] = useState(null)
   const [loading, setLoading] = useState(false)
   const { currentUser, logout } = useAuth()
-  const {setCount} = useContext(CartContext)
+  const { setCount } = useContext(CartContext)
   const navigate = useNavigate()
   const location = useLocation()
 
   const destinationURL = location.state?.returnURL || '/'
-  const noOrderImage = require('../../assets/noOrder.png')
+  
 
   useEffect(() => {
     setLoading(true)
@@ -38,10 +39,13 @@ function Profile() {
       setError('Failed to log out')
     }
   }
-  //fetch order from firebase by user email
-
+  //fetch order from firebase by user email  
   const getOrders = async () => {
-    const querySnapshot = await getDocs(collection(db, 'users'))
+    const q = query(
+      collection(db, 'users'),
+      where('user', '==', currentUser.email),
+    )
+    const querySnapshot = await getDocs(q)
     setLoading(false)
     setOrder(
       querySnapshot.docs.map((doc) => {
@@ -52,7 +56,7 @@ function Profile() {
 
   return (
     <div className={styles['profile-container']}>
-      <GrUser className={styles['profile-icon']} />
+      {/* <GrUser className={styles['profile-icon']} /> */}
       {currentUser ? (
         <>
           {error && alert(error)}
@@ -63,15 +67,16 @@ function Profile() {
             </Link>
             <button onClick={handleLogout}>Log out</button>
           </div>
-          {order ? (
+          
+          {order && order.length > 0 ? (
+           
             <div className={styles['profile-order-container']}>
-              {console.log(order)}
-              <h2>Orders: </h2>
+              <h2>Order History</h2>
               {order.map((item, index) => {
                 return (
                   <>
                     <div key={index}>
-                      {item.user === currentUser.email && (
+                      {item.user === currentUser.email ? (
                         <>
                           {/* <h2>Order: </h2> */}
                           <OrderCard
@@ -80,12 +85,13 @@ function Profile() {
                               return (
                                 <div key={index}>
                                   <p>{item.title}</p>
+                                  <p>Size: {item.size}</p>
                                 </div>
                               )
                             })}
                           />
                         </>
-                      )}
+                      ): <div>your are not logged in</div>}
                     </div>
                   </>
                 )
@@ -93,7 +99,15 @@ function Profile() {
             </div>
           ) : (
             <div>
-              {loading ? <Spinner /> : <LazyLoadImage src={noOrderImage} />}
+              {loading ? (
+                <Spinner />
+              ) : (
+                <div className={styles["profile-no-order"]}>
+                  <LazyLoadImage src={require("../../assets/no-order.png")} className={styles["profile-no-order-image"]}/>
+                  <h2>No orders yet</h2> 
+                  <Link to="/shop" className={styles["profile-link"]}>Make an order</Link>
+                </div>
+              )}
             </div>
           )}
         </>

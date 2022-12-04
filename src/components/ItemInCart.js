@@ -22,7 +22,7 @@ function ItemInCart(props) {
     setQuantity(quantity - 1)
   }
   const removeItem = () => {
-    setCart((prev) => prev.filter((item) => item.title !== props.title))
+    setCart((prev) => prev.filter((item) => item.size !== props.size))
     setCount(count - 1)
   }
  
