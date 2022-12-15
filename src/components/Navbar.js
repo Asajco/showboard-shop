@@ -9,12 +9,13 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 function Navbar() {
   const { currentUser, logout } = useAuth()
-  const { count, setCount } = useContext(CartContext)
+  const { count, setCount, setCart } = useContext(CartContext)
   const navigate = useNavigate()
   const handleLogOut = () =>{
   logout()
   navigate("/")
   setCount(0)
+  setCart([])
   }
   return (
     <div className={styles['navbar-container']}>

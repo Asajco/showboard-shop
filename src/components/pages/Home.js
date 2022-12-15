@@ -8,7 +8,7 @@ function Home() {
   
   return (
     <div className={styles['home-container']}>
-      <Link to="/admin">riť</Link>
+      <Link to="/admin">admin</Link>
     </div>
   )
 }

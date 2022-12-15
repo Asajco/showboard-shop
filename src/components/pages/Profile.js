@@ -2,57 +2,37 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../../store/authContex'
 import styles from '../../css/Profile.module.css'
-import { GrUser } from 'react-icons/gr'
-import { collection, getDocs, query, where } from 'firebase/firestore'
-import { db } from '../../firebase'
 import OrderCard from '../OrderCard'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Spinner from '../Spinner'
 import CartContext from '../../store/buyContext'
-
+import ItemsContext from '../../store/itemsContext'
 
 function Profile() {
   const [error, setError] = useState('')
-  const [order, setOrder] = useState(null)
-  const [loading, setLoading] = useState(false)
   const { currentUser, logout } = useAuth()
-  const { setCount } = useContext(CartContext)
+  const { setCount, setCart } = useContext(CartContext)
+  const { order, loading } = useContext(ItemsContext)
   const navigate = useNavigate()
   const location = useLocation()
 
   const destinationURL = location.state?.returnURL || '/'
-  
-
-  useEffect(() => {
-    setLoading(true)
-    getOrders()
-    console.log(order)
-  }, [])
 
   async function handleLogout() {
     setError('')
     try {
       await logout()
       setCount(0)
+      setCart([])
+      
       navigate(destinationURL)
     } catch {
       setError('Failed to log out')
     }
   }
-  //fetch order from firebase by user email  
-  const getOrders = async () => {
-    const q = query(
-      collection(db, 'users'),
-      where('user', '==', currentUser.email),
-    )
-    const querySnapshot = await getDocs(q)
-    setLoading(false)
-    setOrder(
-      querySnapshot.docs.map((doc) => {
-        return doc.data()
-      }),
-    )
-  }
+  
+  console.log(loading)
+  //fetch order from firebase by user email
 
   return (
     <div className={styles['profile-container']}>
@@ -67,7 +47,7 @@ function Profile() {
             </Link>
             <button onClick={handleLogout}>Log out</button>
           </div>
-          
+
           {order && order.length > 0 ? (
            
             <div className={styles['profile-order-container']}>
@@ -91,7 +71,9 @@ function Profile() {
                             })}
                           />
                         </>
-                      ): <div>your are not logged in</div>}
+                      ) : (
+                        null
+                      )}
                     </div>
                   </>
                 )
@@ -102,10 +84,15 @@ function Profile() {
               {loading ? (
                 <Spinner />
               ) : (
-                <div className={styles["profile-no-order"]}>
-                  <LazyLoadImage src={require("../../assets/no-order.png")} className={styles["profile-no-order-image"]}/>
-                  <h2>No orders yet</h2> 
-                  <Link to="/shop" className={styles["profile-link"]}>Make an order</Link>
+                <div className={styles['profile-no-order']}>
+                  <LazyLoadImage
+                    src={require('../../assets/no-order.png')}
+                    className={styles['profile-no-order-image']}
+                  />
+                  <h2>No orders yet</h2>
+                  <Link to="/shop" className={styles['profile-link']}>
+                    Make an order
+                  </Link>
                 </div>
               )}
             </div>

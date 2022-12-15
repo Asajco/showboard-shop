@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './store/authContex'
 import { ItemsContextProvider } from './store/itemsContext'
 import { CartContextProvider } from './store/buyContext'
-import GlobalStyles from "./styles/GlobalStyles"
+import GlobalStyles, { Container } from './styles/GlobalStyles'
 
 const App = React.lazy(() => import('./App'))
 const root = ReactDOM.createRoot(document.getElementById('root'))
@@ -14,8 +14,14 @@ root.render(
       <ItemsContextProvider>
         <AuthProvider>
           <BrowserRouter>
-            <GlobalStyles/>
-            <Suspense fallback={<div>riť</div>}>
+            <GlobalStyles />
+            <Suspense
+              fallback={
+                <Container>
+                  <h1>Welcome</h1>
+                </Container>
+              }
+            >
               <App />
             </Suspense>
           </BrowserRouter>

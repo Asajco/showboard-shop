@@ -9,6 +9,7 @@ import { useAuth } from '../../store/authContex'
 import Image from '../../assets/payment-image.jpeg'
 import styles from '../../css/Payment.module.css'
 import Spinner from '../Spinner'
+import {v4 as uuid} from "uuid"
 function Payment() {
   const { cart, totalPriceOfCart, setCount, setCart } = useContext(CartContext)
   const navigate = useNavigate()
@@ -36,6 +37,7 @@ function Payment() {
       delivery: data.delivery,
       order: cart,
       totalPrice: totalPriceOfCart,
+      id: uuid()
     })
   }
 

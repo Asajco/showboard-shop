@@ -19,6 +19,8 @@ import Payment from './components/pages/Payment'
 import Confirmation from './components/Confirmation'
 import Admin from './components/pages/Admin'
 import Contact from './components/pages/Contact'
+import Help from './components/pages/Help'
+import About from './components/pages/About'
 
 function AppNavigation() {
   return (
@@ -44,6 +46,8 @@ function AppNavigation() {
         <Route path="/update-profile" element={<UpdateProfile />} />
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/contact" element={<Contact/>}/>
+        <Route path="/help" element={<Help/>}/>
+        <Route path="/about-us" element={<About/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

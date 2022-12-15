@@ -21,6 +21,11 @@ export const Button = styled.button`
         background-color: ${colors.hoverButton};
     }
 `
-
+export const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
 
 export default GlobalStyles
