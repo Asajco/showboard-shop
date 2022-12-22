@@ -31,8 +31,6 @@ function Profile() {
     }
   }
   
-  console.log(loading)
-  //fetch order from firebase by user email
 
   return (
     <div className={styles['profile-container']}>

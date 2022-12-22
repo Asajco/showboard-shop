@@ -56,8 +56,12 @@ function Footer() {
       width: 30px;
       height: 30px;
       margin: 0.5rem;
+      transition: 0.1s all ease-in-out;
       &:first-child{
       margin-left: 0rem;
+      &:hover{
+        opacity: 0.8;
+      }
     }
     }
     

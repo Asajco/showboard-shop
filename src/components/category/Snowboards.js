@@ -6,6 +6,7 @@ import styles from '../../css/Snowboard.module.css'
 const Snowboards = () => {
   const { snowboards } = useContext(ItemsContext)
   // const { id } = useParams()
+  console.log(snowboards)
   return (
     <>
       <h1>Snowboards</h1>

@@ -1,23 +1,21 @@
-
-
 .item-page-wrapper{
     display: flex;
     flex-direction: row;
-    margin: 3rem;
-    
     justify-content: space-between;
+    align-items: center;
 }
 .item-page-wrapper-image{
-    width: 50%;
+    width: 30%;
     height: 80%;
-    margin-right: 2rem;
+    margin-left: 2rem;
 }   
 .item-page-about-item-wrapper{
     display: flex;
     flex-direction: column;
-    width: 50%;
-    margin-left: 2rem;
-    line-height: 2rem;
+    width: 40%;
+    height: 70%;
+    margin: 2rem 2rem 2rem 0rem;
+    line-height: 1rem;
     text-align: justify;
     background-color: whitesmoke;
     padding: 2rem 3rem;

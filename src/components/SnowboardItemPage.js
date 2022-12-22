@@ -13,13 +13,11 @@ function SnowboardItemPage() {
 
   const setSizeOfItem = (size) => {
     setSize(size)
-    //change background color on one button
+   
   }
 
   const addToCart = (item) => {
-    console.log(item.size)
-    console.log(size)
-    console.log(item)
+    
     //if size of item in cart is same alert
     if (cart.some((item) => item.size === size)) {
       alert('You already have this item in your cart')
@@ -27,7 +25,7 @@ function SnowboardItemPage() {
       setCart([...cart, { ...item, size: size }])
       setCount(count + 1)
     }
-    console.log(cart)
+   
     window.scrollTo(0, 0)
   }
 
@@ -35,7 +33,6 @@ function SnowboardItemPage() {
     <div>
       {snowboards ? (
         snowboards.map((item, index) => {
-          
           return (
             <div>
               {item.title === itemId ? (

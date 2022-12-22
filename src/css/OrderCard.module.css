@@ -1,7 +1,7 @@
 .order-card-wrapper{  
     width: 100%;
     border-bottom: 2px solid black;
-    margin-top: 2rem;
+    margin: 0rem 0rem 1.5rem 0rem;
     padding-bottom: 0.5rem;
 }
 .order-card-wrapper h4{

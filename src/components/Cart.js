@@ -44,7 +44,7 @@ function Cart() {
                   title={item.title}
                   image={item.image}
                   price={item.price + ' €'}
-                  totalPriceOfProduct={item.price}
+                  totalPriceOfProduct={item.price }
                   size={item.size}
                 />
               </>

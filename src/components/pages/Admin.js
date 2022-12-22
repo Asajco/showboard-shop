@@ -65,22 +65,25 @@ function Admin() {
     data.image = imageURL
     if (data.category === 'snowboard') {
       await addDoc(collection(db, 'snowboards'), {
+        image: data.image,
         title: data.title,
         brand: data.brand,
         description: data.description,
         size: size,
-        price: data.price,
+        price: parseInt(data.price),
       })
     } else if (data.category === 'bindings') {
       await addDoc(collection(db, 'bindings'), {
+        image: data.image,
         title: data.title,
         brand: data.brand,
         description: data.description,
         size: size,
-        price: data.price,
+        price: parseInt(data.price),
       })
     } else if (data.category === 'boots') {
       await addDoc(collection(db, 'boots'), {
+        image: data.image,
         title: data.title,
         brand: data.brand,
         description: data.description,
@@ -121,7 +124,7 @@ function Admin() {
               <option value="boots">Boots</option>
             </select>
             <input type="text" {...register('title')} placeholder="Title" />
-            <input type="number" {...register('price')} placeholder="Price" />
+            <input type="text" {...register('price')} placeholder="Price" />
             <input type="" {...register('brand')} placeholder="Brand" />
             <input
               type="textarea"
@@ -131,7 +134,7 @@ function Admin() {
             <input type="text" {...register('size')} placeholder="Size" />
             <input
               type="file"
-              {...register('file')}
+              {...register('image')}
               placeholder="Select items image"
             />
             <input type="submit" />
