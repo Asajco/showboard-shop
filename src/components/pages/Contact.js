@@ -1,16 +1,70 @@
 import React, { useState } from 'react'
-import styles from '../../css/Contact.module.css'
 import { useForm } from 'react-hook-form'
 import emailjs from '@emailjs/browser'
-import { Button } from '../../styles/GlobalStyles'
+import { Button, Container, Box } from '../../styles/GlobalStyles'
+import Placeholder from '../../assets/placeholder.jpeg'
+import ContactImage from '../../assets/contact-image.jpeg'
 import {
   BsFillGeoAltFill,
   BsChatDotsFill,
   BsTelephoneFill,
 } from 'react-icons/bs'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+import styled from 'styled-components'
 
 function Contact() {
+  const BoxWrapper = styled(Container)`
+    flex-direction: row;
+    margin: 3rem 0rem;
+  `
+  const ContactBox = styled(Box)`
+    width: 12rem;
+    height: 10rem;
+    text-align: justify;
+    h3 {
+      margin: 0.5rem 0rem;
+    }
+  `
+  const ContianerFormWrapper = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 5rem 0rem;
+  `
+  const Form = styled.form`
+    width: 45%;
+    height: 18rem;
+    display: flex;
+    flex-direction: column;
+    margin-right: 2rem;
+    justify-content: space-between;
+    textarea {
+      resize: none;
+      height: 4rem;
+      font-size: 0.8rem;
+      padding: 0.5rem;
+      outline: none;
+      border-radius: 0.2rem;
+    }
+    input {
+      width: 80%;
+      height: 1.5rem;
+      font-size: 0.8rem;
+      transition: 0.5s;
+      border-radius: 0.2rem;
+      padding-left: 0.5rem;
+      font-family: 'Roboto', sans-serif;
+      &:focus {
+        outline: none;
+        width: 85%;
+        font-size: 0.9rem;
+      }
+    }
+  `
+  const Image = styled(LazyLoadImage)`
+    filter: grayscale(1);
+    margin: 0rem 0rem 2rem 2rem;
+  `
   const [showPopup, setShowPopup] = useState(false)
   const scrollUp = () => {
     window.scrollTo({
@@ -59,43 +113,46 @@ function Contact() {
   }
 
   return (
-    <div className={styles['contact-container']}>
+    <Container>
       <h3>Get in touch with us</h3>
-      <div className={styles['contact-boxes-container']}>
-        <div className={styles['contact-wrapper']}>
-          <BsChatDotsFill className={styles['contact-icon']} />
+      <BoxWrapper>
+        <ContactBox>
+          <BsChatDotsFill size={30} />
           <h3>Email</h3>
           <label>name@gmail.com</label>
-        </div>
-        <div className={styles['contact-wrapper']}>
-          <BsFillGeoAltFill className={styles['contact-icon']} />
+        </ContactBox>
+        <ContactBox>
+          <BsFillGeoAltFill size={30} />
           <h3>Adress</h3>
           <p>Tajovského 40</p>
           <p>00000 Banská Bystrica</p>
           <p>Slovakia</p>
-        </div>
-        <div className={styles['contact-wrapper']}>
-          <BsTelephoneFill className={styles['contact-icon']} />
+        </ContactBox>
+        <ContactBox>
+          <BsTelephoneFill size={30} />
           <h3>Phone</h3>
           <label>+421949171506</label>
-        </div>
-      </div>
+        </ContactBox>
+      </BoxWrapper>
 
-      <div className={styles['contact-form-section']}>
-        <LazyLoadImage src={require('../../assets/contact-image.jpeg')} className={styles["contact-image"]}/>
-        <form
+      <ContianerFormWrapper>
+        <Image
+          src={ContactImage}
+          placeholderSrc={Placeholder}
+        />
+        <Form
           onSubmit={handleSubmit(sendEmail)}
-          className={styles['form-container']}
+       
         >
-          <label>Your dearest name</label>
+          <label>Name</label>
           <input
             {...register('userName', { required: 'This field is required' })}
-            placeholder="Your name..."
+            placeholder="etc. Joe Doe"
             name="userName"
-            className={styles['form-input']}
+           
           />
-          <p className={styles['error-message']}>{errors.userName?.message}</p>
-          <label>Your dearest email</label>
+          <p>{errors.userName?.message}</p>
+          <label>Email</label>
           <input
             {...register('userEmail', {
               required: 'This field is required',
@@ -104,25 +161,25 @@ function Contact() {
                 message: 'Invalid email address',
               },
             })}
-            placeholder="Email"
-            className={styles['form-input']}
+            placeholder="etc. joe@gmail.com"
+            
           />
-          <p className={styles['error-message']}>{errors.userEmail?.message}</p>
+          <p>{errors.userEmail?.message}</p>
           <label>Your message</label>
           <textarea
             {...register('message', {
               required: 'If you want to text me, write me something',
             })}
             name="message"
-            placeholder="Write your message"
-            className={styles['form-input']}
+            placeholder="etc. This is best shop ever"
+           
           ></textarea>
-          <p className={styles['error-message']}>{errors.message?.message}</p>
+          <p>{errors.message?.message}</p>
 
           <Button type="submit">Send</Button>
-        </form>
-      </div>
-    </div>
+        </Form>
+      </ContianerFormWrapper>
+    </Container>
   )
 }
 

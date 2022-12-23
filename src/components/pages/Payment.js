@@ -9,7 +9,8 @@ import { useAuth } from '../../store/authContex'
 import Image from '../../assets/payment-image.jpeg'
 import styles from '../../css/Payment.module.css'
 import Spinner from '../Spinner'
-import {v4 as uuid} from "uuid"
+import { v4 as uuid } from 'uuid'
+import { Container } from '../../styles/GlobalStyles'
 function Payment() {
   const { cart, totalPriceOfCart, setCount, setCart } = useContext(CartContext)
   const navigate = useNavigate()
@@ -37,7 +38,7 @@ function Payment() {
       delivery: data.delivery,
       order: cart,
       totalPrice: totalPriceOfCart,
-      id: uuid()
+      id: uuid(),
     })
   }
 
@@ -97,8 +98,10 @@ function Payment() {
             <option value="personalTake">Take it in person</option>
           </select>
           <div className={styles['payment-terms']}>
-            <input type="checkbox" {...register('terms', { required: true })}/>
-            <label>I accept <i>terms of contitions</i></label>
+            <input type="checkbox" {...register('terms', { required: true })} />
+            <label>
+              I accept <i>terms of contitions</i>
+            </label>
           </div>
           {errors.delivery?.type === 'required' && (
             <p role="alert">Delivery type is required</p>

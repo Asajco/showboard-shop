@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import ItemsContext from '../../store/itemsContext'
 import Card from '../Card'
 import styles from '../../css/Snowboard.module.css'
+import styled from 'styled-components'
 // import { useParams } from 'react-router'
 const Snowboards = () => {
   const { snowboards } = useContext(ItemsContext)

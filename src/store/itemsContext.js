@@ -11,7 +11,6 @@ export const ItemsContextProvider = (props) => {
   const [boots, setBoots] = useState([])
   const [order, setOrder] = useState([])
   const [loading, setLoading] = useState(false)
-
   const getSnowboards = async () => {
     const querySnapshot = await getDocs(collection(db, 'snowboards'))
 
@@ -33,15 +32,10 @@ export const ItemsContextProvider = (props) => {
     setBoots(querySnapshot.docs.map((doc) => doc.data()))
   }
   const getOrders = async () => {
-   
-    const q = query(
-      collection(db, 'users'),
-    
-    )
+    const q = query(collection(db, 'users'))
     const querySnapshot = await getDocs(q)
     setOrder(
       querySnapshot.docs.map((doc) => {
-        
         return doc.data()
       }),
     )
@@ -64,7 +58,6 @@ export const ItemsContextProvider = (props) => {
         bindings: bindings,
         boots: boots,
         order: order,
-       
       }}
     >
       {props.children}

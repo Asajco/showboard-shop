@@ -7,8 +7,49 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Spinner from '../Spinner'
 import CartContext from '../../store/buyContext'
 import ItemsContext from '../../store/itemsContext'
+import { Container, Button, _Link } from '../../styles/GlobalStyles'
+import styled from 'styled-components'
+import NoOrder from "../../assets/no-order.png"
 
 function Profile() {
+  const ProfileFunctionBar = styled(Container)`
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 10rem;
+    p {
+      font-size: 1.2rem;
+      font-weight: 550;
+    }
+    button {
+      width: 10.8rem;
+      height: 2rem;
+      background-color: transparent;
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      font-weight: 550;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+  `
+  const ProfileLink = styled(_Link)`
+    margin-top: 2rem;
+    font-weight: 550;
+    transition: 0.25s;
+    
+  `
+  const Orders = styled(Container)`
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 3rem;
+    align-items: flex-start;
+    h2 {
+      margin: 0rem 0rem 1.5rem 3rem;
+    }
+  `
+
   const [error, setError] = useState('')
   const { currentUser, logout } = useAuth()
   const { setCount, setCart } = useContext(CartContext)
@@ -17,47 +58,50 @@ function Profile() {
   const location = useLocation()
 
   const destinationURL = location.state?.returnURL || '/'
-
+  console.log(order.map((item)=>item.user))
   async function handleLogout() {
     setError('')
     try {
       await logout()
       setCount(0)
       setCart([])
-      
+
       navigate(destinationURL)
     } catch {
       setError('Failed to log out')
     }
   }
-  
 
   return (
-    <div className={styles['profile-container']}>
+    <Container>
       {/* <GrUser className={styles['profile-icon']} /> */}
       {currentUser ? (
         <>
           {error && alert(error)}
-          <div className={styles['profile-wrapper']}>
+          <ProfileFunctionBar>
             <p>{currentUser.email}</p>
-            <Link to="/update-profile" className={styles['profile-link']}>
+            <ProfileLink
+              to="/update-profile"
+    
+            >
               Update profile
-            </Link>
-            <button onClick={handleLogout}>Log out</button>
-          </div>
+            </ProfileLink>
+            <Button onClick={handleLogout}>Log out</Button>
+          </ProfileFunctionBar>
 
-          {order && order.length > 0 ? (
-           
-            <div className={styles['profile-order-container']}>
+          {order.map((item)=>item.user) === currentUser.email ? (
+            
+            <Orders>
               <h2>Order History</h2>
               {order.map((item, index) => {
                 return (
                   <>
-                    <div key={index}>
+                    <div>
                       {item.user === currentUser.email ? (
                         <>
                           {/* <h2>Order: </h2> */}
                           <OrderCard
+                            key={index}
                             price={item.totalPrice}
                             title={item.order.map((item, index) => {
                               return (
@@ -69,29 +113,27 @@ function Profile() {
                             })}
                           />
                         </>
-                      ) : (
-                        null
-                      )}
+                      ) : null}
                     </div>
                   </>
                 )
               })}
-            </div>
+            </Orders>
           ) : (
             <div>
               {loading ? (
                 <Spinner />
               ) : (
-                <div className={styles['profile-no-order']}>
+                <Container>
                   <LazyLoadImage
-                    src={require('../../assets/no-order.png')}
+                    src={NoOrder}
                     className={styles['profile-no-order-image']}
                   />
                   <h2>No orders yet</h2>
                   <Link to="/shop" className={styles['profile-link']}>
                     Make an order
                   </Link>
-                </div>
+                </Container>
               )}
             </div>
           )}
@@ -99,7 +141,7 @@ function Profile() {
       ) : (
         <h1 className={styles['profile-notloged']}>Log in to see details</h1>
       )}
-    </div>
+    </Container>
   )
 }
 
